@@ -1,4 +1,4 @@
-function  [newdata,visdata] = myADASYN(data, minorityLabel, N, k)
+function  [newdata,visdata] = myADASYN(data, minorityLabel, num2Add, options)
 % Note: Here we assume beta = 1.
 % Where 0<=beta<=1 is a parameter used to specify the desired
 % balance level after generation of the synthetic data. beta = 1
@@ -8,13 +8,13 @@ function  [newdata,visdata] = myADASYN(data, minorityLabel, N, k)
 % Input
 % data: table data with features and labels
 % 1. The right-most variable is treated as labels
-% TODO: if not so, move var to the right-most
 % 2. Features are expected to be numeric values
-% TODO: Validation routine
 %
 % minorityLabel (scalar string): Label to oversample
-% N (scalar numeric): Number of data to generate
-% k (scalar integer): number of neighbors to consider
+% num2Add (scalar numeric): Number of data to generate
+% options.NumNeighbors (scalar integer): number of neighbors to consider
+% options.Standardize (scalar logical):
+% Standard-euclidean (true) or Euclidean distance (false) distance to search the neighbors
 %
 % Output
 % newdata: generated dataset
@@ -25,18 +25,27 @@ function  [newdata,visdata] = myADASYN(data, minorityLabel, N, k)
 arguments
     data {mustBeTableWithClassname}
     minorityLabel (1,1) string 
-    N (1,1) double {mustBeNonnegative, mustBeInteger}
-    k (1,1) double {mustBePositive, mustBeInteger} = 5
+    num2Add (1,1) double {mustBeNonnegative, mustBeInteger} = 0
+    options.NumNeighbors (1,1) double {mustBePositive, mustBeInteger} = 5
+    options.Standardize (1,1) logical = false;
+end
+
+numNeighbors = options.NumNeighbors;
+if options.Standardize
+    distance = 'seuclidean';
+else
+    distance = 'euclidean';
 end
 
 % If N is smaller than zero, do not oversample data
-if  N <= 0
+if  num2Add <= 0
     newdata = table;
     visdata = cell(1);
     return;
 end
 
-visdata = cell(N,4);
+visdata = cell(num2Add,4);
+% Optional output for visualization purpose only
 % 1: y, 2: nnarray, 3: y2, 4: synthetic
 
 % labels of whote dataset
@@ -57,7 +66,9 @@ nnarrays = cell(NofMinorityData,1);
 
 for ii=1:NofMinorityData
     y = featuresMinority(ii,:); % a minority data
-    [nnarray, ~] = knnsearch(featuresAll,y,'k',k+1,'SortIndices',true);  % search for neighboring points
+    [nnarray, ~] = knnsearch(featuresAll,y,'k',numNeighbors+1,...
+        'Distance',distance, ...
+        'SortIndices',true); % search for neighboring points
     % NOTE: this include self y, needs to omit y from nnarray
     nnarray = nnarray(2:end);
     % Note: nnarray will have a list of index of each neighboring points
@@ -65,7 +76,7 @@ for ii=1:NofMinorityData
     idx = labelsAll(nnarray) == minorityLabel;
     NofNonMinority = sum(~idx); % number of non-minority data
     nnarrays{ii} = nnarray(idx); % keeps minority dataset only
-    weights(ii) = NofNonMinority/k; % keeps the ratio of non-minority dataset
+    weights(ii) = NofNonMinority/numNeighbors; % keeps the ratio of non-minority dataset
     % Note: ADASYN generates more data when more non-minority dataset is
     % around
 end
@@ -78,14 +89,16 @@ if all(weights == 0)
 else
     % Decide the number of synthetic data to genarate for each minority
     % dataset
-    N2generate = ceil(N*(weights/sum(weights)));
+    N2generate = ceil(num2Add*(weights/sum(weights)));
     
-    newFeatures = zeros(N,size(featuresAll,2));
+    newFeatures = zeros(num2Add,size(featuresAll,2));
     index = 1;
     
     for ii=1:NofMinorityData % for all the minority dataset
         y = featuresMinority(ii,:); % a minority data
-        [nnarray, ~] = knnsearch(featuresMinority,y,'k',k+1,'SortIndices',true); % search for neighboring points
+        [nnarray, ~] = knnsearch(featuresMinority,y,'k',numNeighbors+1,...
+            'Distance',distance, ...
+            'SortIndices',true); % search for neighboring points
         % NOTE: this include self y, needs to omit y from nnarray
         nnarray = nnarray(2:end);
         
@@ -104,7 +117,7 @@ else
             
             index = index + 1;
             
-            if index > N
+            if index > num2Add
                 break;
             end
         end
