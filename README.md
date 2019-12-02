@@ -6,6 +6,9 @@ MATLAB Implementation of the following four SMOTE related algorithms
 - ADASYN (He, H. et al. 2008)[3]
 - Safe-level SMOTE (Bunkhumpornpat, C. at al. 2009)[4]
 
+![Step1toStep3](https://github.com/minoue-xx/oversampling4ImbalancedData/edit/master/OverSamplingImbalancedData.gif)
+Example of the synthesizing process by Safe-level SMOTE.
+
 ## Environment
  MATLAB R2019b 
 
