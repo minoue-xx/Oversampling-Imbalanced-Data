@@ -1,4 +1,5 @@
 % Custom validation function
+% https://jp.mathworks.com/help/matlab/matlab_prog/function-argument-validation-1.html
 %-------------------------------------------------------------------------
 % Copyright (c) 2019 Michio Inoue
 function mustBeTableWithClassname(arg)
