@@ -12,6 +12,7 @@ function [newdata,visdata] = mySafeLevelSMOTE(data, minorityLabel, N, k)
 %
 % Output
 % newdata: generated dataset
+% visdata: optional output for debugging
 %-------------------------------------------------------------------------
 % Copyright (c) 2019 Michio Inoue
 
@@ -96,6 +97,9 @@ for ii=1:T1 % Number of data from minority dataset to be used
         safeLevelN = safeLevels(nn);
         diff = featuresMinoritySubset(nn,:) - y;
         gap = generateGap(safeLevelP, safeLevelN);
+        if isnan(gap)
+            continue; % for case 1
+        end
         synthetic = y + gap.*diff; % “à‘}
         newFeatures(index,:) = synthetic;
         
@@ -119,6 +123,7 @@ newdata = addvars(tmp,repmat(minorityLabel,height(tmp),1),...
     'NewVariableNames',data.Properties.VariableNames(end));
 end
 
+
 function gap = generateGap(safeLevelP, safeLevelN)
 
 if safeLevelN ~= 0
@@ -128,6 +133,7 @@ else
 end
 
 if (isinf(safeLevelRatio) && safeLevelP == 0) % 1st case
+    gap = nan;
     % does not generate positive synthetic instance
 elseif (isinf(safeLevelRatio) && safeLevelP ~= 0) % 2nd case
     gap = 0;

@@ -12,6 +12,7 @@ function [newdata,visdata] = myBorderlineSMOTE(data, minorityLabel, N, k)
 %
 % Output
 % newdata: generated dataset
+% visdata: optional output for debugging
 %-------------------------------------------------------------------------
 % Copyright (c) 2019 Michio Inoue
 
