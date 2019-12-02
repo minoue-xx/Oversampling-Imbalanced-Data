@@ -10,7 +10,7 @@ MATLAB Implementation of the following four SMOTE related algorithms
 Example of the synthesizing process by Safe-level SMOTE.
 
 ## Environment
- MATLAB R2019b 
+ MATLAB R2019b (Statistics and Machine Learning Toolbox required)
 
 ## A graphical explanation of the algorithms.
 
