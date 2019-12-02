@@ -1,5 +1,5 @@
 # Oversampling for class imbalanced dataset
-MATLAB Implementation of SMOTE related algorithms
+MATLAB Implementation of the following four SMOTE related algorithms
 
 - SMOTE (Chawla, NV. et al. 2002)[1]
 - Borderline SMOTE (Han, H. et al. 2005)[2]
@@ -8,6 +8,25 @@ MATLAB Implementation of SMOTE related algorithms
 
 ## Environment
  MATLAB R2019b 
+
+## A graphical explanation of the algorithms.
+
+### SMOTE (Chawla, NV. et al. 2002)[1]
+
+<img src="./images/smote.PNG" alt="SMOTE" title="SMOTE" width="400">
+
+### Borderline SMOTE (Han, H. et al. 2005)[2]
+<img src="./images/borderlineSmote.PNG" alt="BorderlineSMOTE" title="Borderline SMOTE" width="400">
+
+### ADASYN (He, H. et al. 2008)[3]
+
+<img src="./images/adasyn.PNG" alt="ADASYN" title="ADASYN" width="400">
+
+### Safe-level SMOTE (Bunkhumpornpat, C. at al. 2009)[4]
+
+<img src="./images/safelevelSmote.PNG" alt="SafeLevelSMOTE" title="Safe-level SMOTE" width="400">
+
+
 
 # Reference
 [1]: Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: synthetic minority over-sampling technique. Journal of artificial intelligence research, 16, 321-357.
