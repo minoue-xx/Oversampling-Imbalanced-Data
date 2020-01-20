@@ -10,32 +10,7 @@
 Copyright (c) 2019 Michio Inoue
 
 
-# Reference and its graphical explanation of the algorithms
-## SMOTE (Chawla, NV. et al. 2002)
-
-
-![image_0.png](README_images/image_0.png)
-
-
-## Borderline SMOTE (Han, H. et al. 2005)
-
-
-![image_1.png](README_images/image_1.png)
-
-
-## ADASYN (He, H. et al. 2008)
-
-
-![image_2.png](README_images/image_2.png)
-
-
-## Safe-level SMOTE (Bunkhumpornpat, C. at al. 2009)
-
-
-![image_3.png](README_images/image_3.png)
-
-
-# Exaple: Creating sample data
+# Example: Creating sample data
 ```matlab
 clear;
 close all;
@@ -229,7 +204,7 @@ hold off
 
 ![figure_2.png](README_images/figure_2.png)
 
-# Reference
+# Reference and its graphical explanation
 
 
 [1]: Chawla, N. V., Bowyer, K. W., Hall, L. O., \& Kegelmeyer, W. P. (2002). SMOTE: synthetic minority over-sampling technique. Journal of artificial intelligence research, 16, 321-357. 
@@ -248,5 +223,29 @@ hold off
 
 
 [4]: Bunkhumpornpat, C., Sinapiromsaran, K., \& Lursinsap, C. (2009). Safe-level-smote: Safe-level-synthetic minority over-sampling technique for handling the class imbalanced problem. In Pacific-Asia conference on knowledge discovery and data mining (pp. 475-482). Springer, Berlin, Heidelberg.
+
+
+## SMOTE (Chawla, NV. et al. 2002)
+
+
+![image_0.png](README_images/image_0.png)
+
+
+## Borderline SMOTE (Han, H. et al. 2005)
+
+
+![image_1.png](README_images/image_1.png)
+
+
+## ADASYN (He, H. et al. 2008)
+
+
+![image_2.png](README_images/image_2.png)
+
+
+## Safe-level SMOTE (Bunkhumpornpat, C. at al. 2009)
+
+
+![image_3.png](README_images/image_3.png)
 
 
