@@ -1,5 +1,7 @@
 # Oversampling with SMOTE with its relative algorithms
 
+[![View Oversampling Imbalanced Data: SMOTE related algorithms on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://jp.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms)
+
    -  SMOTE (Chawla, NV. et al. 2002)[1]  
    -  Borderline SMOTE (Han, H. et al. 2005)[2]  
    -  ADASYN (He, H. et al. 2008)[3]  
