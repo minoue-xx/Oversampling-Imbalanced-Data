@@ -1,4 +1,4 @@
-# Overampling with SMOTE with its relative algogithms
+# Oversampling with SMOTE with its relative algorithms
 
    -  SMOTE (Chawla, NV. et al. 2002)[1]  
    -  Borderline SMOTE (Han, H. et al. 2005)[2]  
